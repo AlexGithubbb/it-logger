@@ -10,7 +10,6 @@ const ShowTechsModal = ({ tech: { techs, loading }, getTechs}) => {
       getTechs();
     }, []);
 
-
   return (
     <div id='tech-list-modal' className='modal'>
       <div className='modal-content'>

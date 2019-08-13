@@ -1,13 +1,6 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "change me lol",
-      "attention": true,
-      "tech": "Ray Allen",
-      "date": "2019-07-30T21:53:49.152Z"
-    },
-    {
       "id": 2,
       "message": "updated! yeeeeee",
       "attention": false,
@@ -27,6 +20,13 @@
       "tech": "Sara Wilson",
       "date": "2019-05-31T15:46:48.690Z",
       "id": 5
+    },
+    {
+      "message": "should check the backend out, cannot connect database to heroku",
+      "attention": true,
+      "tech": "Bowei Yao",
+      "date": "2019-08-12T23:22:44.334Z",
+      "id": 6
     }
   ],
   "techs": [
@@ -36,19 +36,19 @@
       "lastName": "Doe"
     },
     {
-      "id": 2,
-      "firstName": "Sam",
-      "lastName": "Smith"
-    },
-    {
-      "id": 3,
-      "firstName": "Sara",
-      "lastName": "Wilson"
-    },
-    {
       "firstName": "Bowei",
       "lastName": "Yao",
       "id": 4
+    },
+    {
+      "firstName": "Lulu",
+      "lastName": "Lin",
+      "id": 5
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "id": 6
     }
   ]
 }

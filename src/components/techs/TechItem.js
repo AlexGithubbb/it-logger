@@ -27,5 +27,4 @@ TechItem.propTypes = {
 };
 
 
-
 export default connect(null, {deleteTech})(TechItem);

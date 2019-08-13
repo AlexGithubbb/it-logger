@@ -26,7 +26,6 @@ const App = () => {
         <AddBtn />
         <ShowTechsModal />
         <Logs />
-
       </div>
     </Fragment>
   );

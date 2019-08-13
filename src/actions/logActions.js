@@ -1,10 +1,21 @@
 import * as actionTypes from './types';
 
+
+// GET_LOGS,
+//   SET_LOADING,
+//   LOGS_ERROR,
+//   ADD_LOG,
+//   DELETE_LOG,
+//   UPDATE_LOG,
+//   SEARCH_LOGS,
+//   SET_CURRENT,
+//   CLEAR_CURRENT
+
 // get logs from server
 export const getLogs = () => async dispatch => {
   try {
     setLoading();
-    const res = await fetch('./logs');
+    const res = await fetch('https://it-logger-api.herokuapp.com/logs');
     const data = await res.json();
     dispatch({
       type: actionTypes.GET_LOGS,
@@ -13,7 +24,7 @@ export const getLogs = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: actionTypes.LOGS_ERROR,
-      payload: err.response.data // should be err.res.data ?
+      payload: err.response.data
     });
   }
 };
@@ -22,7 +33,7 @@ export const getLogs = () => async dispatch => {
 export const addLog = (log) => async dispatch => {
   try {
     setLoading();
-    const res = await fetch('/logs', {
+    const res = await fetch('https://it-logger-api.herokuapp.com/logs', {
       method: 'POST',
       body: JSON.stringify(log),
       headers : {
@@ -34,10 +45,10 @@ export const addLog = (log) => async dispatch => {
         type: actionTypes.ADD_LOG,
         payload: data
       })
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: actionTypes.LOGS_ERROR,
-      payload: error.response.data
+      payload: err.response.data
     })
   }
 }
@@ -46,7 +57,7 @@ export const addLog = (log) => async dispatch => {
 export const deleteLog = id => async dispatch => {
   try {
     setLoading();
-    await fetch(`/logs/${id}`, {
+    await fetch(`https://it-logger-api.herokuapp.com/logs/${id}`, {
       method: 'DELETE',
     });
     dispatch({
@@ -56,7 +67,7 @@ export const deleteLog = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: actionTypes.LOGS_ERROR,
-      payload: err.response.statusText
+      payload: err.response.data
     });
   }
 }
@@ -64,7 +75,7 @@ export const deleteLog = id => async dispatch => {
 export const updateLog = (log) => async dispatch => {
   try {
     setLoading();
-    const res = await fetch(`/logs/${log.id}`, {
+    const res = await fetch(`https://it-logger-api.herokuapp.com/logs/${log.id}`, {
       method: 'PUT',
       body: JSON.stringify(log),
       headers: {
@@ -76,28 +87,28 @@ export const updateLog = (log) => async dispatch => {
       type: actionTypes.UPDATE_LOG,
       payload: data
     })
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: actionTypes.LOGS_ERROR,
-      payload: error.response.data
+      payload: err.response.data
     })
   }
 }
 
 // serach logs
-export const searchLog = (text) => async dispatch => {
+export const searchLogs = (text) => async dispatch => {
   try {
     setLoading();
-    const res = await fetch(`/logs/?q=${text}`);
+    const res = await fetch(`https://it-logger-api.herokuapp.com/logs/?q=${text}`);
     const data = await res.json();
     dispatch({
       type: actionTypes.SEARCH_LOGS,
       payload: data
     })
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: actionTypes.LOGS_ERROR,
-      payload: error.response.data
+      payload: err.response.data
     })
   }
 }
