@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { deleteTech } from '../../actions/techActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const TechItem = ({ tech, deleteTech }) => {
   const onDelete = () => {
     deleteTech(tech.id);
-    M.toast({ html: 'tech was deleted' })
-  }
+    M.toast({ html: 'tech was deleted' });
+  };
   return (
     <li className='collection-item'>
       <div>
@@ -23,8 +23,10 @@ const TechItem = ({ tech, deleteTech }) => {
 
 TechItem.propTypes = {
   tech: PropTypes.object.isRequired,
-  deleteTech: PropTypes.func.isRequired,
+  deleteTech: PropTypes.func.isRequired
 };
 
-
-export default connect(null, {deleteTech})(TechItem);
+export default connect(
+  null,
+  { deleteTech }
+)(TechItem);

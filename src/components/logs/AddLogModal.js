@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
-import {connect} from 'react-redux';
-import {addLog} from '../../actions/logActions';
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { addLog } from '../../actions/logActions';
+import PropTypes from 'prop-types';
 import TechSelectedOptions from '../techs/TechSelectedOptions';
 
-
-const AddLogModal = ({addLog}) => {
+const AddLogModal = ({ addLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
 
-  const onSubmit = () => {
-    if(message === '' || tech === ''){
-      M.toast({ html: 'Please finish the log input!',
-        displayLength: 2000 })
-    }else{
+  const onSubmit = e => {
+    e.preventDefault();
+    if (message === '' || tech === '') {
+      M.toast({ html: 'Please finish the log input!', displayLength: 2000 });
+    } else {
       const newLog = {
         message,
         attention,
         tech,
-        date : new Date()
-      }
+        date: new Date()
+      };
       addLog(newLog);
       M.toast({
         html: 'Log has been added successfully!',
         displayLength: 2000
-      })
+      });
       // console.log(message, attention, tech);
       //clear fileds
       setMessage('');
@@ -35,9 +34,9 @@ const AddLogModal = ({addLog}) => {
     }
   };
   return (
-    <div id='add-log-modal' className='modal' style = {modalStyle}>
+    <div id='add-log-modal' className='modal' style={modalStyle}>
       <div className='modal-content'>
-        <h4 style = {{marginBottom: '30px'}}>Enter System Log</h4>
+        <h4 style={{ marginBottom: '30px' }}>Enter System Log</h4>
         <div className='row'>
           <div className='input-field'>
             <input
@@ -85,7 +84,7 @@ const AddLogModal = ({addLog}) => {
       <div className='modal-footer'>
         <a
           href='!'
-          onClick={onSubmit}
+          onClick={e => onSubmit(e)}
           className='modal-close waves-effect waves-green btn blue'
         >
           Enter
@@ -98,11 +97,13 @@ const AddLogModal = ({addLog}) => {
 const modalStyle = {
   width: '75%',
   height: '75%'
-}
+};
 
 AddLogModal.propTypes = {
-  addLog: PropTypes.func.isRequired,
-}
+  addLog: PropTypes.func.isRequired
+};
 
-
-export default connect(null, {addLog})(AddLogModal);
+export default connect(
+  null,
+  { addLog }
+)(AddLogModal);
